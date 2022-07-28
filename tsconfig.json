@@ -10,7 +10,7 @@
     "checkJs": false,
     "allowJs": true,
     "charset": "utf-8",
-    "module": "ES6",
+    "module": "UMD",
     "outDir": "dist",
     "esModuleInterop": true,
     "declaration": true,

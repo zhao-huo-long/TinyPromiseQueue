@@ -11,17 +11,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhao-huo-long/Blog"
+    "url": "git+https://github.com/zhao-huo-long/TinyPromiseQueue"
   },
   "keywords": [
     "TingPromiseQueue"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "https://github.com/zhao-huo-long",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zhao-huo-long/Blog/issues"
+    "url": "https://github.com/zhao-huo-long/TinyPromiseQueue/issues"
   },
-  "homepage": "https://github.com/zhao-huo-long/Blog#readme",
+  "homepage": "https://github.com/zhao-huo-long/TinyPromiseQueue#readme",
   "devDependencies": {
     "@babel/types": "^7.16.0",
     "@types/eslint": "^8.2.1",

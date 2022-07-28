@@ -17,6 +17,7 @@ export default class TinyPromiseQueue {
   private isAbort = false
   private readonly event = new Event()
   private readonly total: number = 0;
+  private response: unknown[] = []
   public onProgress?: (p: { done: number, total: number }) => unknown
 
   constructor(
@@ -36,18 +37,19 @@ export default class TinyPromiseQueue {
 
   private next = (promise: Promise<unknown>) => {
     if (this.isAbort) return
+    this.pending = this.pending.filter(item => item.promise !== promise);
     this.onProgress?.({
-      done: this.total - this.factoryArr.length,
+      done: this.total - this.factoryArr.length - this.pending.length,
       total: this.total
     })
-    this.pending = this.pending.filter(item => item.promise !== promise);
-    const nextFn = this.factoryArr.pop()
+    const nextFn = this.factoryArr.shift()
     this.execte(nextFn)
   }
 
   private readonly wrapper = (promise: Promise<unknown>) => {
     promise
       .then(res => {
+        this.response.push(res)
         setTimeout(() => {
           this.next(promise)
         })
@@ -59,6 +61,7 @@ export default class TinyPromiseQueue {
           setTimeout(() => this.event.emit('fail', err))
         }
         if (this.errorPolicy === 'ignore') {
+          this.response.push(err)
           setTimeout(() => {
             this.next(promise)
           })
@@ -68,14 +71,7 @@ export default class TinyPromiseQueue {
   }
 
   private readonly execte = (fn: PromiseFactory) => {
-    if (
-      !this.pending.length
-      && !this.factoryArr.length
-    ) {
-      this.event.emit('success', true)
-    }
     const result = fn?.()
-    if (!result) return
     if (Array.isArray(result)) {
       const [promise, abort] = result
       this.wrapper(promise)
@@ -90,6 +86,12 @@ export default class TinyPromiseQueue {
         promise: result
       })
     }
+    if (
+      !this.pending.length
+      && !this.factoryArr.length
+    ) {
+      this.event.emit('success', true)
+    }
   }
 
   readonly start = () => {
@@ -100,8 +102,8 @@ export default class TinyPromiseQueue {
     for (const fn of fnArr) {
       this.execte(fn)
     }
-    return new Promise<void>((res, rej) => {
-      this.event.on('success', () => res())
+    return new Promise<unknown>((res, rej) => {
+      this.event.on('success', () => res(this.response))
       this.event.on('fail', (e) => rej(e))
     })
   }
