@@ -6,6 +6,7 @@
       "ESNext",
       "DOM"
     ],
+    "moduleResolution": "Node",
     "checkJs": false,
     "allowJs": true,
     "charset": "utf-8",
