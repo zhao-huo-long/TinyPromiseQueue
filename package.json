@@ -1,5 +1,5 @@
 {
-  "name": "ting-promise-queue",
+  "name": "tiny-promise-queue",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
