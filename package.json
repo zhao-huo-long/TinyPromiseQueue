@@ -1,0 +1,37 @@
+{
+  "name": "ting-promise-queue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "test": "npm run lint",    
+    "build": "tsc",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhao-huo-long/Blog"
+  },
+  "keywords": ["TingPromiseQueue"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhao-huo-long/Blog/issues"
+  },
+  "homepage": "https://github.com/zhao-huo-long/Blog#readme",
+  "devDependencies": {
+    "typescript": "^4.5.4",
+    "@types/eslint": "^8.2.1",
+    "@types/eslint-scope": "^3.7.1",
+    "@types/node": "^16.11.12",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "eslint": "^8.4.1",
+    "husky": "^7.0.4",
+    "@babel/types": "^7.16.0"
+  },
+  "dependencies": {
+    
+  }
+}
