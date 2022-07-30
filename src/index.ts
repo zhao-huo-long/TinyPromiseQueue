@@ -59,14 +59,15 @@ export default class TinyPromiseQueue {
         if (this.errorPolicy === 'abort') {
           this.abort()
           setTimeout(() => this.event.emit('fail', err))
+          return err
         }
         if (this.errorPolicy === 'ignore') {
           this.response.push(err)
           setTimeout(() => {
             this.next(promise)
           })
+          return Promise.resolve(err)
         }
-        return err
       })
   }
 
