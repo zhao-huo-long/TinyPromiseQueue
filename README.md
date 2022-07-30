@@ -1,15 +1,15 @@
-### tiny-promise-queue
+### promise-queue-tiny
 🚀🚀🚀 this is a promise-queue util!
 
 
 #### install
 ```shell
-npm i tiny-promise-queue
+npm i promise-queue-tiny
 ```
 
 #### useage
 ```js
-import PromiseQueue from 'tiny-promise-queue'
+import PromiseQueue from 'promise-queue-tiny'
 
 const PromiseFactoryArray = Array.from({length: 10})
   .map((i, index) => {

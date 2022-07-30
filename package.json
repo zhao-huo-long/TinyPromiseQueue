@@ -1,5 +1,5 @@
 {
-  "name": "tiny-promise-queue",
+  "name": "promise-queue-tiny",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
